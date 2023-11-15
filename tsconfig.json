@@ -24,7 +24,14 @@
     /* node 解析*/
     "types": [
       "node"
-    ]
+    ],
+    /* 配置别名引用范围*/
+    "baseUrl": "/",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
   },
   "include": [
     "src"
