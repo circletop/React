@@ -1,21 +1,16 @@
 // 对象的写法
-// import App from "../App";
 import Home from "@/views/Home"
-import About from "@/views/About"
+// import About from "@/views/About"
 import {Navigate } from "react-router-dom";
+import { About, User } from "./lazyRoutes";
+import React from "react";
 
-// const baseRouter = ()=> (
-//   <BrowserRouter>
-//   <Routes>
-//     <Route  path="/" element={<App/>}>
-//       {/* 配置默认跳转路径 */}
-//       <Route path="/" element={<Navigate to="/home" />}></Route>
-//       <Route path="/home" element={<Home />}></Route>
-//       <Route path="/about" element={<About />}></Route>
-//     </Route>
-//   </Routes>
-//   </BrowserRouter>
-// )
+// 懒加载loading处理
+const withLoadingComponent = (comp: JSX.Element) =>
+<React.Suspense fallback={<div>loading</div>}>
+  {comp}
+</React.Suspense>
+
 const router = [{
   path: "/",
   element: <Navigate to="/home" />
@@ -24,6 +19,11 @@ const router = [{
   element: <Home></Home>
 }, {
   path: "/about",
-  element: <About></About>
-}]
+  element: withLoadingComponent(<About></About>)
+},
+{
+  path: "/user",
+  element: withLoadingComponent(<User></User>)
+}
+] 
 export default router
