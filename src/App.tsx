@@ -1,12 +1,13 @@
-import Comp1 from "./components/Comp1"
-import Comp2 from "./components/Comp2"
+import { Button } from 'antd';
+import { Outlet } from 'react-router-dom';
+
 function App() {
 
   return (
   <div>
     顶级组建
-    <Comp1></Comp1>
-    <Comp2></Comp2>
+    <Button type="primary">按钮</Button>
+    <Outlet />
   </div>
   )
 }
