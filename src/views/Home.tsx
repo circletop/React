@@ -9,6 +9,7 @@ import {
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import { useNavigate, Outlet } from 'react-router-dom';
+import { log } from 'console';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -50,11 +51,18 @@ const View: React.FC = () => {
     navigateTo(e.key)
 
   }
+  // 设置菜单单项展开
+  const [openKeys, setOpenKeys] = useState(['']);
+  const handleOpenChange = (keys: string[]) => {
+    console.log(keys);
+    setOpenKeys([keys[keys.length - 1]])
+    
+  }
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div className="demo-logo-vertical" />
-        <Menu theme="dark" defaultSelectedKeys={['/page1']} mode="inline" items={items}  onClick={menuClick}/>
+        <Menu onOpenChange={handleOpenChange} openKeys={openKeys} theme="dark" defaultSelectedKeys={['/page1']} mode="inline" items={items}  onClick={menuClick}/>
       </Sider>
       <Layout>
         <Header style={{ paddingLeft: '16px', background: colorBgContainer }}>
