@@ -52,7 +52,15 @@ const MainMenu: React.FC = () => {
   const menuClick = (e: {key: string})=> {
     navigateTo(e.key)
   }
-  return <Menu onOpenChange={handleOpenChange} openKeys={openKeys} theme="dark" defaultSelectedKeys={['/page1']} mode="inline" items={items}  onClick={menuClick}/>
+  return (<>
+  <Menu
+  onOpenChange={handleOpenChange}
+  openKeys={openKeys} theme="dark"
+  defaultSelectedKeys={['/page1']}
+  mode="inline"
+  items={items}
+  onClick={menuClick}/>
+  </>)
 }
 
 export default MainMenu
