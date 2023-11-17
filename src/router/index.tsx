@@ -2,7 +2,7 @@
 import Home from "@/views/Home"
 // import About from "@/views/About"
 import {Navigate } from "react-router-dom";
-import { About, User } from "./lazyRoutes";
+import { About, Page1, Page2, User } from "./lazyRoutes";
 import React from "react";
 
 // 懒加载loading处理
@@ -13,17 +13,25 @@ const withLoadingComponent = (comp: JSX.Element) =>
 
 const router = [{
   path: "/",
-  element: <Navigate to="/home" />
+  element: <Navigate to="/page1" />
 }, {
-  path: "/home",
-  element: <Home></Home>
-}, {
-  path: "/about",
-  element: withLoadingComponent(<About></About>)
-},
-{
-  path: "/user",
-  element: withLoadingComponent(<User></User>)
+  path: "/",
+  element: <Home />,
+  children: [{
+    path: 'page1',
+    element: withLoadingComponent(<Page1></Page1>)
+  }, {
+    path: 'page2',
+    element: withLoadingComponent(<Page2></Page2>)
+  }]
 }
+// , {
+//   path: "/about",
+//   element: withLoadingComponent(<About></About>)
+// },
+// {
+//   path: "/user",
+//   element: withLoadingComponent(<User></User>)
+// }
 ] 
 export default router
