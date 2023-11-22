@@ -24,6 +24,9 @@ const router = [{
   }, {
     path: 'page2',
     element: withLoadingComponent(<Page2></Page2>)
+  }, {
+    path: '/sub1/about',
+    element: withLoadingComponent(<About></About>)
   }]
 },
 {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, useMatches } from 'react-router-dom';
 import type { MenuProps } from 'antd';
 import {Menu} from 'antd'
 import {
@@ -31,7 +31,7 @@ const items: MenuItem[] = [
   getItem('Option 1', '/page1', <PieChartOutlined />),
   getItem('Option 2', '/page2', <DesktopOutlined />),
   getItem('User', 'sub1', <UserOutlined />, [
-    getItem('Tom', '3'),
+    getItem('About', '/sub1/about'),
     getItem('Bill', '4'),
     getItem('Alex', '5'),
   ]),
@@ -41,8 +41,22 @@ const items: MenuItem[] = [
 
 const MainMenu: React.FC = () => {
 
+  // 默认选中菜单 
+  const currentRoute = useLocation()
+
    // 设置菜单单项展开
-   const [openKeys, setOpenKeys] = useState(['']);
+   let defaultOpenKeys= ''
+   console.log(currentRoute.pathname.split('/')[1]);
+   const parentPath = currentRoute.pathname.split('/')[1]
+   const filterRoute = items.find(i=> parentPath === i?.key)
+   
+   if(filterRoute) {
+    defaultOpenKeys = parentPath
+   } else {
+    defaultOpenKeys = ''
+   }
+   const [openKeys, setOpenKeys] = useState([defaultOpenKeys]);
+   
    const handleOpenChange = (keys: string[]) => {
      setOpenKeys([keys[keys.length - 1]]) 
    }
@@ -56,7 +70,7 @@ const MainMenu: React.FC = () => {
   <Menu
   onOpenChange={handleOpenChange}
   openKeys={openKeys} theme="dark"
-  defaultSelectedKeys={['/page1']}
+  defaultSelectedKeys={[currentRoute.pathname]}
   mode="inline"
   items={items}
   onClick={menuClick}/>
