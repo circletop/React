@@ -3,6 +3,7 @@ import Home from "@/views/Home"
 // import About from "@/views/About"
 import {Navigate } from "react-router-dom";
 import { About, Page1, Page2, User } from "./lazyRoutes";
+import Login from "@/views/Login/Login";
 import React from "react";
 import NotFound from "@/views/NotFound"
 
@@ -28,6 +29,10 @@ const router = [{
     path: '/sub1/about',
     element: withLoadingComponent(<About></About>)
   }]
+},
+{
+  path: '/login',
+  element: <Login/>
 },
 {
   path: "*",
