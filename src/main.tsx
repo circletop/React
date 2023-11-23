@@ -12,11 +12,16 @@ import App from './App.tsx'
 // 对象形式
 import { BrowserRouter } from 'react-router-dom'
 
+import { Provider } from 'react-redux'
+import store from '@/store/index.ts'
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
+  <Provider store={store}>
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-    {/* <Router /> */}
-  </React.StrictMode>,
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+      {/* <Router /> */}
+    </React.StrictMode>
+  </Provider>,
 )
