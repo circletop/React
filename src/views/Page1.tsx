@@ -11,6 +11,14 @@ const View = ()=> {
   const onclick2 = ()=> {
     dispatch({type: 'add2', val: 10})
   }
+  const onclick3 = ()=> {
+    // dispatch({type: 'add3', val: 10})
+    dispatch((dispatch: Function)=> {
+      setTimeout(()=> {
+        dispatch({type: 'add2', val: 10})
+      },1000)
+    })
+  }
   return <>
     <div>Page1 reducer-参数{a}</div>
     <div>Page1 reducer-参数{list}</div>
@@ -24,6 +32,9 @@ const View = ()=> {
     </Button> 
     <Button type="primary" htmlType="submit"  onClick={onclick2} style={{width: '100%'}}>
       add 10
+    </Button> 
+    <Button type="primary" htmlType="submit"  onClick={onclick3} style={{width: '100%'}}>
+      异步提交
     </Button> 
   </>
 }
