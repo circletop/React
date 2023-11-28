@@ -1,4 +1,5 @@
 import {useSelector, useDispatch} from "react-redux"
+import numState from "@/store/NumState"
 import { Button } from "antd"
 const View = ()=> {
   const {a} = useSelector((state: RootState)=> ({a: state.NumReducer.a}))
@@ -13,11 +14,7 @@ const View = ()=> {
   }
   const onclick3 = ()=> {
     // dispatch({type: 'add3', val: 10})
-    dispatch((dispatch: Function)=> {
-      setTimeout(()=> {
-        dispatch({type: 'add2', val: 10})
-      },1000)
-    })
+    dispatch(numState.asyncAction.asyncAdd(2))
   }
   return <>
     <div>Page1 reducer-参数{a}</div>

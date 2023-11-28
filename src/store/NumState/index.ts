@@ -17,6 +17,15 @@ const numState = {
       state.a += actions.val
     }
   },
+  asyncAction: {
+    asyncAdd(val: number) {
+      return (dispatch: Function)=> {
+        setTimeout(() => {
+          dispatch({type: 'add2', val})
+        }, 1000);
+      }
+      }
+  },
   actionNames: {}
 }
 const actionNames = {}
