@@ -2,8 +2,16 @@ import style from './login.module.scss'
 import LoginLeft from "@/assets/images/login_left.png"
 import ReactLogo from "@/assets/react.svg"
 import LoginForm from './LoginForm'
-
-const Login = () => (<div className={`${style.loginContainer} flx-center`}>
+import { useEffect } from 'react'
+import { imgCode } from '@/request/api'
+const Login = () => {
+  useEffect(()=> {
+    imgCode().then(res=> {
+      console.log(res, '333');
+      
+    })
+  })
+return <><div className={`${style.loginContainer} flx-center`}>
   <div className={style.loginBox}>
     <div className={style.loginLeft}>
     <img className={style.loginLeftImg} src={LoginLeft} alt="login" />
@@ -19,6 +27,7 @@ const Login = () => (<div className={`${style.loginContainer} flx-center`}>
   <div>
 
   </div>
-</div>)
-
+</div>
+</>
+}
 export default Login
