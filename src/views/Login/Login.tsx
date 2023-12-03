@@ -24,9 +24,6 @@ return <><div className={`${style.loginContainer} flx-center`}>
         <LoginForm />
       </div>
   </div>
-  <div>
-
-  </div>
 </div>
 </>
 }

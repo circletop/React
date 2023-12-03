@@ -1,8 +1,9 @@
 $color: #eee;
-body {
+html,body, #root {
   background-color: $color ;
   // 禁用文字选中
   user-select: none;
+  height: 100%;
 }
 img {
   // 禁止图片拖动
@@ -11,6 +12,7 @@ img {
 
 /* flex */
 .flx-center {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
